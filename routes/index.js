@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 var pg = require('pg');
-var conString = "postgres://postgres:root@localhost/proyecto_sig"; // Cadena de conexión a la base de datos
+
+pg.defaults.ssl = process.env.DATABASE_URL != undefined;
+var conString = process.env.DATABASE_URL || "postgres://postgres:root@localhost/proyecto_sig"; // Cadena de conexión a la base de datos
 
 // Set up your database query to display GeoJSON
 var coffee_query = "SELECT row_to_json(fc) FROM ( SELECT array_to_json(array_agg(f)) As Datos FROM (" +
