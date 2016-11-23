@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+  p #{title}
+
+  div
+    table(border=1)
+      thead
+        tr
+          th #
+          th Nombre
+          th Coordenadas
+          th Shape
+      tbody
+        each item, i in datos
+          tr
+            td
+              label #{i + 1}
+            td
+              label #{item.properties.f2} 
+            td
+              label #{item.geometry.coordinates[0]}   /     
+              label #{item.geometry.coordinates[1]}
+            td
+              label #{item.geometry.type}
